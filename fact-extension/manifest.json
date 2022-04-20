@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "FactChecker",
+  "version": "1.0.0",
+  "description": "Figthing misinformation at scale",
+  "background": {
+    "service_worker": "worker.js"
+  },
+  "action": {
+    "default_title": "FactCheck"
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ]
+}
