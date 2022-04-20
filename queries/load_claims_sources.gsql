@@ -1,0 +1,4 @@
+CREATE LOADING JOB load_claims_sources FOR GRAPH FactChecking {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO EDGE sources VALUES($0, $1) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+    }

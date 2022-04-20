@@ -1,0 +1,27 @@
+CREATE QUERY similar_claims(SET <STRING> Entities, INT maxReturn) FOR GRAPH FactChecking SYNTAX v2{
+      TYPEDEF tuple<JSONOBJECT claim, FLOAT similarity> simMentions;
+      FLOAT result;
+      HeapAccum<simMentions>(maxReturn, similarity DESC) @@topMentionResults;
+      SetAccum<UINT> @mentions;
+      SetAccum<UINT> @@inMentions;
+
+      // Get the mentions of the input
+      ourMentions = SELECT m FROM Mention:m WHERE m.EntityType IN Entities
+      ACCUM
+        @@inMentions += m.id;
+
+      // Get the mentions of all claims
+      simPeople = SELECT c FROM Claim:c - (mentions>) - Mention:m
+      ACCUM
+        c.@mentions += m.id
+      POST-ACCUM
+        STRING text = "",
+        IF c.IsTrue
+        THEN text = "{\"text\":\""+c.Text + "\",\"truth\": true}"
+        ELSE text = "{\"text\":\""+c.Text + "\",\"truth\": false}"
+        END,
+        @@topMentionResults += simMentions(parse_json_object(text), similarity(@@inMentions, c.@mentions));
+
+
+      PRINT @@topMentionResults;
+    }

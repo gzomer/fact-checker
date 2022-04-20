@@ -1,0 +1,7 @@
+CREATE SCHEMA_CHANGE JOB add_structure FOR GRAPH TwitterBadActors {
+      ADD VERTEX Account(PRIMARY_ID id UINT, Name STRING, ScreenName STRING, Location STRING, Description STRING, FollowersCount INT, FriendsCount INT, ListedCount INT, StatusesCount INT, ProfileImage STRING, CreatedAt STRING, ActorType STRING DEFAULT "'unknown'", OriginalActorType STRING DEFAULT "'unknown'") WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true";
+      ADD VERTEX Tweet(PRIMARY_ID id UINT, Text STRING, CreatedAt STRING, QuoteCount INT DEFAULT "0", ReplyCount INT DEFAULT "0", RetweetCount INT DEFAULT "0", FavoriteCount INT DEFAULT "0") WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true";
+      ADD DIRECTED EDGE link(FROM Account, TO Account) WITH REVERSE_EDGE="reverse_link";
+      ADD DIRECTED EDGE tweet(FROM Account, TO Tweet) WITH REVERSE_EDGE="reverse_tweet";
+    }
+

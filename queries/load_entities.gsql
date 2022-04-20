@@ -1,0 +1,4 @@
+CREATE LOADING JOB load_entities FOR GRAPH Wikidata {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO VERTEX Resource VALUES($0, $1) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+    }

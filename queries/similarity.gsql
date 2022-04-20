@@ -1,0 +1,20 @@
+CREATE QUERY similarity(Set<UINT> A, Set<UINT> B) FOR GRAPH FactChecking RETURNS (FLOAT){
+    SetAccum<UINT> @@inter, @@uni;
+    FLOAT similarity;
+
+    IF A.size() != 0 AND B.size() !=0 THEN
+      @@inter = A INTERSECT B;
+      @@uni = A UNION B;
+
+      IF @@inter.size() == 0 THEN
+        similarity = 0;
+      ELSE
+        similarity = @@inter.size()*1.0/@@uni.size();
+        END;
+    ELSE
+      similarity = 0;
+      END;
+
+    PRINT similarity;
+    RETURN similarity;
+  }

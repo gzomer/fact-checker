@@ -1,0 +1,4 @@
+CREATE LOADING JOB load_claims FOR GRAPH FactChecking {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO VERTEX Claim VALUES($0, $1, $2, $3) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+    }

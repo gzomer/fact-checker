@@ -1,0 +1,4 @@
+CREATE LOADING JOB load_predicate FOR GRAPH Wikidata {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO VERTEX Predicate VALUES($0, $1) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+    }

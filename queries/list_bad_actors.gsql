@@ -1,0 +1,9 @@
+CREATE QUERY list_bad_actors() FOR GRAPH TwitterBadActors {
+        SetAccum<UINT> @@accounts;
+        res = SELECT a FROM Account:a
+        WHERE a.ActorType == "bad_actor"
+        ACCUM
+          @@accounts += a.id;
+
+        print(@@accounts);
+    }

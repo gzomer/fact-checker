@@ -1,0 +1,4 @@
+CREATE LOADING JOB load_mentions FOR GRAPH FactChecking {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO VERTEX Mention VALUES($0, $1, $2) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+    }

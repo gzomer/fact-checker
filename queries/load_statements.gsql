@@ -1,0 +1,7 @@
+CREATE LOADING JOB load_statements FOR GRAPH Wikidata {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO VERTEX Statement VALUES($0, "\0") USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+      LOAD MyDataSource TO EDGE subject VALUES($0, $1) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+      LOAD MyDataSource TO EDGE predicate VALUES($0, $2) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+      LOAD MyDataSource TO EDGE object VALUES($0, $3) USING SEPARATOR=",", HEADER="true", EOL="\n", QUOTE="double";
+    }

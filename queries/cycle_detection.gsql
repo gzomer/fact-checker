@@ -1,0 +1,38 @@
+CREATE QUERY cycle_detection (INT depth) FOR GRAPH TwitterBadActors {
+        ListAccum<ListAccum<VERTEX>> @currList, @newList;
+        ListAccum<ListAccum<VERTEX>> @@cycles;
+        SumAccum<INT> @uid;
+
+        # initialization
+        Active = {Account.*};
+        Active = SELECT s
+                 FROM Active:s
+                 WHERE s.ActorType == "bad_actor"
+                 ACCUM s.@currList = [s];
+
+        WHILE Active.size() > 0 LIMIT depth DO
+        Active = SELECT t
+                 FROM Active:s -(link:e)-> :t
+                 ACCUM BOOL t_is_min = TRUE,
+                       FOREACH sequence IN s.@currList DO
+                               IF t == sequence.get(0) THEN  # cycle detected
+                                        FOREACH v IN sequence DO
+                                                IF getvid(v) < getvid(t) THEN
+                                                        t_is_min = FALSE,
+                                                        BREAK
+                                                END
+                                        END,
+                                        IF t_is_min == TRUE THEN  # if it has the minimal label in the list, report
+                                                @@cycles += sequence
+                                        END
+                               ELSE IF sequence.contains(t) == FALSE THEN   # discard the sequences containing t
+                                        t.@newList += [sequence + [t]]   # store sequences in @newList to avoid confliction with @currList
+                               END
+                       END
+                 POST-ACCUM s.@currList.clear(),
+                            t.@currList = t.@newList,
+                            t.@newList.clear()
+                 HAVING t.@currList.size() > 0;  # IF receive no sequences, deactivate it;
+        END;
+        PRINT @@cycles;
+}

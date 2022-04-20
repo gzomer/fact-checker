@@ -1,0 +1,12 @@
+CREATE QUERY list_accounts() FOR GRAPH TwitterBadActors {
+        TYPEDEF TUPLE <Account String, ActorType String> accountType;
+
+        SetAccum<accountType> @@accounts;
+        res = SELECT a FROM Account:a -(:e) - Account:b
+        WHERE a.ActorType == "bad_actor"
+        ACCUM
+          @@accounts += accountType(a.ScreenName, a.ActorType),
+          @@accounts += accountType(b.ScreenName, b.ActorType);
+
+        print(@@accounts);
+    }
