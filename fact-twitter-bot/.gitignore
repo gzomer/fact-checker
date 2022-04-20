@@ -1,0 +1,9 @@
+node_modules
+env
+dev
+tmp
+tweets/*
+!tweets/*.gitkeep
+state/tweets/*
+!state/tweets/*.gitkeep
+__pycache__

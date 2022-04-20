@@ -1,0 +1,22 @@
+{
+  "name": "fact-twitter-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.3",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "got": "^12.0.3",
+    "node-fetch": "^2.6.7",
+    "node-tweet-stream": "^2.1.0",
+    "oauth": "^0.9.15",
+    "simple-oauth2": "^3.4.0",
+    "twit": "^2.2.11"
+  }
+}
