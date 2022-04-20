@@ -1,0 +1,49 @@
+# List sources of factchecking websites
+- name: Snopes
+  url: https://www.snopes.com/sitemap_index.xml
+  type: sitemap_index
+  pattern: fact_check-sitemap
+- name: MediaBias
+  url: https://mediabiasfactcheck.com/post-sitemap4.xml
+  type: sitemap
+  pattern: latest-fact-checks
+# List sources of thrustworthy websites
+- name: BBC
+  url: http://feeds.bbci.co.uk/news/world/rss.xml
+  type: rss
+- name: NewYorkTimes
+  url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+  type: rss
+- name: TheGuardian
+  url: https://www.theguardian.com/world/rss
+  type: rss
+- name: WallStreetJournal
+  url: https://feeds.a.dj.com/rss/RSSWorldNews.xml
+  type: rss
+- name: CNN
+  url: http://rss.cnn.com/rss/edition_world.rss
+  type: rss
+# List sources of thrustworthy websites in Brazil
+- name: Folha
+  url: https://feeds.folha.uol.com.br/mundo/rss091.xml
+  type: rss
+# List sources of thrustworthy websites in France
+- name: LeMonde
+  url: https://www.lemonde.fr/rss/une.xml
+  type: rss
+# List sources of thrustworthy websites in Germany
+- name: Tagesschau
+  url: https://www.tagesschau.de/xml/rss2
+  type: rss
+# List sources of thrustworthy websites in Italy
+- name: LaRepubblica
+  url: https://www.repubblica.it/rss/politica/rss2.0.xml
+  type: rss
+# List sources of thrustworthy websites in Spain
+- name: ElMundo
+  url: https://www.elmundo.es/rss/portada.xml
+  type: rss
+# List sources of the most thrustworthy website in Argentina
+- name: ElPais
+  url: https://ep00.epimg.net/rss/elpais/portada.xml
+  type: rss

@@ -1,0 +1,25 @@
+snopes:
+  data:
+    claim: .claim-text.card-body
+    veracity: .media-body > span.h3
+    title: article > header > h1.title
+    image:
+      selector: meta[property="og:image"]
+      extract:
+        attr: content
+    date:
+      selector: time
+      extract:
+        attr: datetime
+    year:
+      selector: time
+      extract:
+        attr: datetime
+      parser:
+        type: date
+        format: Y
+    content: .card-body.rich-text
+  remove:
+    - script
+mediabias:
+  parser: file
