@@ -38,7 +38,6 @@ class TigerGraph():
             return None
 
         tmp_file = os.path.join(tempfile.gettempdir(), job_name + '.csv')
-        # tmp_file = os.path.join('./tmp', job_name + '.csv')
         df = pd.DataFrame(data)
         df.to_csv(tmp_file, index=False, header=False)
         results = self.conn.uploadFile(tmp_file, fileTag='MyDataSource', jobName=job_name)
