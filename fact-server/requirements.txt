@@ -1,0 +1,6 @@
+flask
+pyTigerGraph
+sentence_transformers
+flask_cors
+bs4
+openai
