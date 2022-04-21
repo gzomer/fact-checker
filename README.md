@@ -41,6 +41,7 @@ Our solution for all these problems is a multi-platform, multi-lingual, real-tim
 
 # Installation
 
+0. Setting up keys
 1. Creating graphs
 2. Importing data
 3. Facts crawler
@@ -51,6 +52,16 @@ Our solution for all these problems is a multi-platform, multi-lingual, real-tim
 8. Fact checking server
 9. Chrome Extension
 10. iOS App
+
+## Setting up keys
+
+Put your TigerGraph config (hostname, user, pass) in the following files:
+- `fact-server/tigergraph.json`
+- `fact-twitter-bot/tigergraph.json`
+
+Put your Twitter API credentials in `fact-twitter-bot/keys.json`
+
+You will also need an OpenAI key later when running `fact-server`.
 
 ## Creating graphs and importing data
 
@@ -181,8 +192,9 @@ pip install -r requirements.txt
 
 Then start Facts Server
 ```bash
-python start app.py
+OPENAI_KEY=<YOUR_KEY> TWITTER_TOKEN=<TOKEN> python start app.py
 ```
+
 
 ### Chrome Extension
 
