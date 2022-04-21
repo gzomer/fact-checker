@@ -17,10 +17,11 @@ Our solution for all these problems is a multi-platform, multi-lingual, real-tim
 
 ## Solution
 
+- Large knowledge graphs of facts automatically harvested from the web
+- Crawlers to automatically extract facts from the web
 - iOS App to fact check information from Facebook, Twitter, Websites, and via voice
 - Chrome extension to fact check websites
 - Twitter bot to automatically monitor bad actors and fake tweets
-- Crawlers to automatically extract facts from the web
 - Fact spotter to extract relevant facts
 - Semantic and reasoning-based fact checking
 
